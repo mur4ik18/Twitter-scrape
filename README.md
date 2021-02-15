@@ -5,4 +5,5 @@ Client: "Hi, I'm looking for someone that can help me develop a simple bot that 
 ## install
 #### selenium
 `pip install selenium`
+###### install webdriver (i was used Chrome)
 [WebDriver Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads)
