@@ -88,20 +88,16 @@ class scraper:
     def get_links(self):
         print(Fore.GREEN + 'Try to get links')
         glob_links = []
-        for i in range(20):
+        for i in range(4):
             links = self.win.find_element_by_xpath('//*[@id="react-root"]/div\
                 /div/div[2]/main/div/div/div/div[1]/div/div[2]/div/div/\
                 section/div/div')
-            tink = links.find_elements_by_xpath('//*[@id="react-root"]/div/div\
-                /div[2]/main/div/div/div/div/div/div[2]/div/div/\
-                section/div/div/div/div/div/div/div[2]/div[1]/div[1]')
-            link = tink.find_elements_by_tag_name('a')
+            link = links.find_elements_by_css_selector("a.r-1wbh5a2")
             for i in range(len(link)):
                 glob_links.append(link[i].get_attribute('href'))
                 print(link[i].get_attribute('href'))
             self.win.execute_script("window.scrollTo(0,document.body.scrollHeight)")
             time.sleep(1)
-        # .get_attribute('href')
         
         
     # function for close window
