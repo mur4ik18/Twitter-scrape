@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 from main import scraper
 
-email = "alekxander.kotov@gmail.com"
+email = "n8BDm9EJOucT3C0"
 password = '0669309431Kot'
 url = 'https://twitter.com/'
 mi = scraper(email,password,url)
@@ -16,9 +16,6 @@ try:
 except:
     mi.close()
 
-try:
-    mi.people_finder(input('write please what you want find: '))
-except:
-    mi.close()
+mi.people_finder(input('write please what you want find: '))
     
 mi.close()
