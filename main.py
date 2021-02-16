@@ -16,8 +16,8 @@ class scraper:
     # methods
     
     # open twitter or link
-    def openWebsite(self):
-        self.win.get(self.link)
+    def openWebsite(self, url):
+        self.win.get(url)
         time.sleep(1)
 
     # click function
@@ -34,7 +34,7 @@ class scraper:
     def log_in(self):
         # open log in website
         print(Fore.MAGENTA + 'open website...')
-        self.openWebsite()
+        self.openWebsite(self.link)
         print(Fore.GREEN + 'Done!')
         
         # click "login"
@@ -82,7 +82,6 @@ class scraper:
         self.click('//*[@id="react-root"]/div/div/div[2]/main/div/div/\
             div/div/div/div[1]/div[2]/nav/div/div[2]/div/div[3]/a',1)
         print(Fore.GREEN + 'we has opened people search!')
-        self.get_links()
     
     # get links
     def get_links(self):
@@ -98,6 +97,9 @@ class scraper:
                 print(link[i].get_attribute('href'))
             self.win.execute_script("window.scrollTo(0,document.body.scrollHeight)")
             time.sleep(1)
+        self.clear_console()
+        print(Fore.GREEN + 'links getted is done')
+        return glob_links
         
         
     # function for close window
@@ -111,3 +113,39 @@ class scraper:
         os.system('clear')
         print(Fore.GREEN + "Errors : 0")
         print(Fore.GREEN + "We are logged")
+        
+    # get @name
+    def get_id(self):
+        ide = self.win.find_element_by_xpath('//*[@id="react-root"]\
+            /div/div/div[2]/main/div/div/div/div/div/div[2]/div/div\
+                /div[1]/div/div[2]/div/div/div[2]/div/span').text
+        return ide
+    
+    # get name
+    def get_name(self):
+        name = self.win.find_element_by_xpath('//*[@id="react-root"]\
+            /div/div/div[2]/main/div/div/div/div[1]/div/div[1]/div[1]\
+                /div/div/div/div/div[2]/div/h2/div/div/div/span[1]/span/span')
+        return name.text
+    
+    # get twits number
+    def get_twits_num(self):
+        twits_num = self.win.find_element_by_xpath('//*[@id="react-root"]\
+            /div/div/div[2]/main/div/div/div/div[1]/div/div[1]/div[1]\
+                /div/div/div/div/div[2]/div/div').text
+        twits_num = twits_num.split(' Tweets')        
+        return twits_num[0]  
+    
+    # get following 
+    def get_following(self):
+        following_nums = self.win.find_element_by_xpath('//*[@id="react-root"]/\
+            div/div/div[2]/main/div/div/div/div/div/div[2]/div/div/div[1]/div/\
+                div[5]/div[1]/a/span[1]/span').text
+        return following_nums
+    
+    # get followers numb
+    def get_followers(self):
+        followers_num = self.win.find_element_by_xpath('//*[@id="react-root"]/\
+            div/div/div[2]/main/div/div/div/div/div/div[2]/div/div/div[1]/div/\
+                div[5]/div[2]/a/span[1]/span').text
+        return followers_num
