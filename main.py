@@ -4,6 +4,11 @@ import time
 from colorama import Fore,Back,Style
 import os
 
+# excel
+from openpyxl import Workbook
+
+
+
 class scraper:
 
     # consctructor
@@ -12,6 +17,7 @@ class scraper:
         self.password = password
         self.link = link
         self.win = webdriver.Chrome('./chromedriver')
+        self.wb = None
     
     # methods
     
@@ -84,10 +90,10 @@ class scraper:
         print(Fore.GREEN + 'we has opened people search!')
     
     # get links
-    def get_links(self):
+    def get_links(self, num):
         print(Fore.GREEN + 'Try to get links')
         glob_links = []
-        for i in range(4):
+        for i in range(num):
             links = self.win.find_element_by_xpath('//*[@id="react-root"]/div\
                 /div/div[2]/main/div/div/div/div[1]/div/div[2]/div/div/\
                 section/div/div')
@@ -149,3 +155,38 @@ class scraper:
             div/div/div[2]/main/div/div/div/div/div/div[2]/div/div/div[1]/div/\
                 div[5]/div[2]/a/span[1]/span').text
         return followers_num
+    
+    # open excel file 
+    def сreate_wb(self):
+        """
+        here we create excel file
+        Make workbook
+        return worksheet
+        """
+        self.wb = Workbook()
+        print(Fore.GREEN + 'Workbook has created')
+        ws = self.wb.active
+        print(Fore.GREEN + 'Workbook has be activeted')
+        return ws
+    
+    # this function save data in excel
+    def save_excel(self, name):
+        """
+        save active workbook in excel file
+        """
+        self.wb.save(name+'.xlsx')
+        print(Fore.MAGENTA + f'{name}.xls has saved')
+        
+    # write info in column
+    def write_col(self, column,row,info,worksheet):
+        """
+        save info into excel
+        use with loop
+        use worksheet
+        """
+        
+        worksheet[str(column)+str(row)] = info
+        
+        
+        
+        
