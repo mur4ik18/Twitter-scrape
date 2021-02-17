@@ -16,10 +16,13 @@ class scraper:
         self.login = email
         self.password = password
         self.link = link
-        self.win = webdriver.Chrome('./chromedriver')
+        self.win = None
         self.wb = None
     
     # methods
+    # win init
+    def win_init(self):
+        self.win = webdriver.Chrome('./chromedriver') 
     
     # open twitter or link
     def openWebsite(self, url):
