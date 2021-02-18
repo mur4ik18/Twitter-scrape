@@ -6,11 +6,10 @@ import os
 
 # excel
 from openpyxl import Workbook
-
-
+# csv
+import  csv
 
 class scraper:
-
     # consctructor
     def __init__(self,email,password,link):
         self.login = email
@@ -197,3 +196,23 @@ class excel():
         use worksheet
         """
         worksheet[str(column)+str(row)] = info
+        
+        
+        
+class work_with_csv:
+    def __init__(self):
+        self.main_file = None
+    
+    # methods
+    def create_csv(self):
+        """
+        create csv for write
+        """
+        f = open('first.csv', 'w')
+        self.main_file = csv.writer(f)
+    
+    def wite_csv(self,argument):
+        """
+        write row in csv
+        """
+        self.main_file.writerow(argument)

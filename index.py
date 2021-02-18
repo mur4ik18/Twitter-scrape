@@ -5,8 +5,6 @@ from main import scraper
 import threading
 
 
-
-# запись в csv
 # многопоточность
 # получение данных о группах
 # получение твитов 
