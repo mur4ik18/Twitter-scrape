@@ -17,7 +17,6 @@ class scraper:
         self.password = password
         self.link = link
         self.win = None
-        self.wb = None
     
     # methods
     # win init
@@ -159,6 +158,16 @@ class scraper:
                 div[5]/div[2]/a/span[1]/span').text
         return followers_num
     
+        
+class excel():
+    def __init__(self,):
+        """
+        intializating  datas
+        """
+        self.wb = None
+    
+    
+    # methods
     # open excel file 
     def сreate_wb(self):
         """
@@ -179,7 +188,7 @@ class scraper:
         """
         self.wb.save(name+'.xlsx')
         print(Fore.MAGENTA + f'{name}.xls has saved')
-        
+    
     # write info in column
     def write_col(self, column,row,info,worksheet):
         """
@@ -187,9 +196,4 @@ class scraper:
         use with loop
         use worksheet
         """
-        
         worksheet[str(column)+str(row)] = info
-        
-        
-        
-        
