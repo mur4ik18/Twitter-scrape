@@ -20,7 +20,7 @@ class scraper:
     # methods
     # win init
     def win_init(self):
-        self.win = webdriver.Chrome('./chromedriver') 
+        self.win = webdriver.Chrome('./chromedriver.exe') 
     
     # open twitter or link
     def openWebsite(self, url):
