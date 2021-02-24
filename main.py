@@ -106,7 +106,8 @@ class scraper:
             time.sleep(1)
         self.clear_console()
         print(Fore.GREEN + 'links getted is done')
-        return glob_links  
+        return glob_links
+        
         
     # function for close window
     def close(self):
@@ -114,6 +115,12 @@ class scraper:
         self.win.close()
         print(Fore.GREEN + "Done!")
     
+    # clear console
+    def clear_console(self):
+        os.system('clear')
+        print(Fore.GREEN + "Errors : 0")
+        print(Fore.GREEN + "We are logged")
+        
     # get @name
     def get_id(self):
         ide = self.win.find_element_by_xpath('//*[@id="react-root"]\
@@ -150,24 +157,9 @@ class scraper:
                 div[5]/div[2]/a/span[1]/span').text
         return followers_num
     
-class parse:
-    def __init__(self):
-        pass
-    
-    # methods
-    
-class console:
-    def __init__(self):
-        pass
-    
-    # clear console
-    def clear_console(self):
-        os.system('clear')
-        print(Fore.GREEN + "Errors : 0")
-        print(Fore.GREEN + "We are logged")
-
-class excel:
-    def __init__(self):
+        
+class excel():
+    def __init__(self,):
         """
         intializating  datas
         """

@@ -8,13 +8,6 @@ import threading
 # многопоточность
 # получение данных о группах
 # получение твитов 
-def url_save(list,fname):
-    f = open(str(fname)+'.txt','w')
-    for i in list:
-        f.write(i)
-        f.write('\n')
-    f.close()
-    pass
 
 find_name = "geo"
 numbers_profiles = 3
@@ -38,11 +31,7 @@ links = []
 mi.people_finder(find_name)
 links = mi.get_links(numbers_profiles)
 links = list(set(links))
-url_save(links,find_name)
 
-
-mi.close()
-'''
 def scrape_info(x,y):
     """
     we scrape info and save in the ram
@@ -116,14 +105,3 @@ def save_to_excel(arr):
 save_to_excel(info)
 
 mi.close()
-'''
-
-
-
-'''
-Hello. I need a very simple scraping & responder tool. Most likely someone already has one hear, I’d like to be able to real time monitor when a page posts, and immediately comment on the page. I’d like to be able to change the comment when needed.
-
-I’d like to also have a function where it can scrape the tweets from an account and comment on those tweets.
-
-Thanks for your help
-'''
