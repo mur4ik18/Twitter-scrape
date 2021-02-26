@@ -1,5 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
+from fake_useragent import UserAgent
+
 import time
 from colorama import Fore,Back,Style
 import os
@@ -15,18 +19,8 @@ class scraper:
         self.login = email
         self.password = password
         self.link = link
-        self.win = None
     
     # methods
-    # win init
-    def win_init(self):
-        self.win = webdriver.Chrome('./chromedriver.exe') 
-    
-    # open twitter or link
-    def openWebsite(self, url):
-        self.win.get(url)
-        time.sleep(1)
-
     # click function
     def click(self,xpath,sleep):
         self.win.find_element_by_xpath(xpath).click()
@@ -108,12 +102,6 @@ class scraper:
         print(Fore.GREEN + 'links getted is done')
         return glob_links
         
-        
-    # function for close window
-    def close(self):
-        print(Fore.YELLOW + "Close window...")
-        self.win.close()
-        print(Fore.GREEN + "Done!")
     
     # clear console
     def clear_console(self):
@@ -156,8 +144,69 @@ class scraper:
             div/div/div[2]/main/div/div/div/div/div/div[2]/div/div/div[1]/div/\
                 div[5]/div[2]/a/span[1]/span').text
         return followers_num
+
+class window:
+    def __init__(self):
+        self.win = None
     
+    # methods
+    # win init
+    def win_init(self,location):
+        self.win = webdriver.Chrome(location) 
+        print(Fore.GREEN + "Initial chrome driver is done!")
+    
+    def win_init_user_agent(self,location,user_agent):
+        opts = Options()
+        opts.add_argument(f'user-agent={user_agent}')
+        self.win = webdriver.Chrome(chrome_options=opts, executable_path=location) 
+        print(Fore.GREEN + "Initial chrome driver with custom UserAgent is done!")
+
+    # open twitter or link
+    def openWebsite(self, url):
+        self.win.get(url)
+        time.sleep(1)
+        print(Fore.GREEN + "URL was opened!")
+
+    # function for close window
+    def close(self):
+        print(Fore.YELLOW + "Close window...")
+        self.win.close()
+        print(Fore.GREEN + "Done!")
+
+    # created fake user agent
+    def fake_user_agent(self):
+        options = Options()
+        ua = UserAgent()
+        userAgent = ua.random
+        print(userAgent)
+        return userAgent
+
+
+class scrape:
+    """
+    universal scrape class
+    """
+    def __init__(self):
+        pass
+
+    def click(self, window, ):
+        """
+        get window
+        """
+        pass
         
+class facebook:
+    def __init__(self):
+        pass
+
+
+    def click(self):
+        """
+
+        """
+        pass
+
+
 class excel():
     def __init__(self,):
         """
@@ -204,11 +253,11 @@ class work_with_csv:
         self.main_file = None
     
     # methods
-    def create_csv(self):
+    def create_csv(self,name):
         """
         create csv for write
         """
-        f = open('first.csv', 'w')
+        f = open(name+'.csv', 'w')
         self.main_file = csv.writer(f)
     
     def wite_csv(self,argument):
